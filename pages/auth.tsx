@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 import Input from '@/components/input'
 
 const Auth = () => {
@@ -12,6 +13,18 @@ const Auth = () => {
     setVariant((prevVariant) =>
       prevVariant === 'login' ? 'register' : 'login'
     )
+
+  const register = async () => {
+    try {
+      await axios.post('/api/register', {
+        email,
+        name,
+        password 
+      })
+    } catch (error) {
+      console.log('error: ',error)
+    }
+  }
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
@@ -50,11 +63,13 @@ const Auth = () => {
                 value={password}
               />
             </div>
-            <button className="bg-red-600 py-3 text-white px-3 rounded-md w-full mt-10 hover:bg-red-700 transition">
+            <button onClick={register} className="bg-red-600 py-3 text-white px-3 rounded-md w-full mt-10 hover:bg-red-700 transition">
               {variant === 'login' ? 'Sign In' : 'Sign Up'}
             </button>
             <p className="text-neutral-500 mt-12">
-              {variant === 'login' ? 'First time using Netflix?' : 'Already have an account?'}
+              {variant === 'login'
+                ? 'First time using Netflix?'
+                : 'Already have an account?'}
               <span
                 onClick={toggleVariant}
                 className="text-white ml-1 hover:underline cursor-pointer"
