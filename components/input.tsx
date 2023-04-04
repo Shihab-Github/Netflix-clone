@@ -15,6 +15,7 @@ export default function Input({id, onChange, value, label, type}: InputProps) {
         value={value}
         type={type}
         placeholder=" "
+        autoComplete="off"
         className="
         block
         rounded-md
