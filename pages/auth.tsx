@@ -139,6 +139,7 @@ const Auth = () => {
                 {variant === 'login' ? 'Create an account' : 'Log In'}
               </span>
             </p>
+            
           </div>
         </div>
       </div>
